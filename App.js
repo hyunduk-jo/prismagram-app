@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import { Asset } from 'expo-asset';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 import { persistCache } from 'apollo-cache-persist';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-boost';
 import apolloClientOptions from './apollo';
 import { ApolloProvider } from "@apollo/client";
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components/native';
 import styles from './styles';
 import NavController from './components/NavController';
 import { AuthProvider } from './AuthContext';
@@ -24,7 +23,7 @@ export default function App() {
       await Font.loadAsync({
         ...Ionicons.font
       });
-      await Asset.loadAsync([require("./assets/logo.png")]);
+      await Asset.loadAsync([require("./assets/logo.png"), require("./assets/instagram.png")]);
       const cache = new InMemoryCache()
       await persistCache({
         cache,
